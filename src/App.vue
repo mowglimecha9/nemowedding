@@ -2,13 +2,14 @@
   <div id="app">
     <masthead  v-view="viewHandler"></masthead>
     <div :class="[{sticky: sticky }, 'nemo-nav']">
-      <navigtion></navigtion>
+      <navigtion @openRsvp="openRsvp()"></navigtion>
     </div>
 
       <mowgli-story id="ourStory"></mowgli-story>
       <proposal  id="proposal"></proposal>
       <entourage  id="entourage"></entourage>
-      <rsvp id="rsvp"></rsvp>
+      <faq  id="faq"></faq>
+      <rsvp id="rsvp" v-if="showRsvp" @close="openRsvp()"></rsvp>
   </div>
 </template>
 
@@ -20,6 +21,7 @@ import Proposal from './components/Proposal.vue';
 import Entourage from './components/Entourage.vue';
 import Rsvp from './components/Rsvp.vue'
 import axios from 'axios';
+import Faq from './components/Faq.vue';
 
 export default {
   name: 'App',
@@ -29,9 +31,12 @@ export default {
     MowgliStory,
     Proposal,
     Entourage,
-    Rsvp
+    Rsvp,
+    Faq
   },
-  data: () => ({ sticky: false }),
+
+  data: () => ({ sticky: false,
+  showRsvp:false }),
   methods: {
     viewHandler (e) {
       if(e.type == 'exit' && e.percentInView == 0 && e.percentCenter < 0) {
@@ -40,6 +45,11 @@ export default {
         this.sticky = false
       }
 
+    },
+    openRsvp() {
+      console.log(this.showRsvp)
+      this.showRsvp = !this.showRsvp
+      console.log(this.showRsvp)
     },
     getList() {
       let apiURL = 'http://localhost:4000/api/getEntourage';
@@ -53,7 +63,10 @@ export default {
     }
   },
   mounted() {
-
+    var url_string = window.location.href
+    var url = new URL(url_string);
+    var c = url.searchParams.get("showRSVP");
+    this.showRsvp  = !!c
   }
 
 

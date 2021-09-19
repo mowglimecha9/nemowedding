@@ -5,11 +5,11 @@ import checkView from 'vue-check-view'
 import VueRellax from 'vue-rellax'
 import vuetimeline from "@growthbunker/vuetimeline"
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faHeart,faRing,faUsers,faGifts,faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
+import { faHeart,faRing,faUsers,faGifts,faQuestionCircle,faChurch,faCheck, faTimes, faCalendarAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import VueScrollTo from 'vue-scrollto';
 
-library.add(faHeart,faGifts,faRing,faUsers,faQuestionCircle)
+library.add(faHeart,faGifts,faRing,faUsers,faQuestionCircle,faChurch,faCheck,faTimes, faCalendarAlt, faEnvelope)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.use(VueScrollTo)
